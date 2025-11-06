@@ -42,24 +42,7 @@
   const rawUrl = params.get("url") || window.location.href;   document.getElementById("blocked-url").textContent = getDomain(rawUrl); </script>
 
 <script type="text/javascript">
-  // Extract domain from a URL
-  function getUrl(url) {
-    try {
-      // Create a proper URL object if possible
-      url = new URL(url).hostname;
-    } catch {
-      // Fallback in case url is not fully qualified
-      url = url.replace(/^https?:\/\//, '');
-    }
-    return url;
-  }
-
-  // Get "?url=" parameter or fallback to current URL
-  const params2 = new URLSearchParams(window.location.search);
-  const rawUrl2 = params.get("url") || window.location.href;
-
-  // Apply domain text to page
-  document.getElementById("blocked-url2").textContent = getUrl(rawUrl2);
+const params2 = new URLSearchParams(window.location.search); document.getElementById("blocked-url2").textContent = params.get("url") || window.location.href;
 </script>
 
   <script>
