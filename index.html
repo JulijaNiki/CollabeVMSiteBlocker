@@ -49,7 +49,7 @@
       url = new URL(url).hostname;
     } catch {
       // Fallback in case url is not fully qualified
-      url = url.replace(/^https?:\/\//, '').split('/')[0];
+      url = url.replace(/^https?:\/\//, '');
     }
     return url;
   }
