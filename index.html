@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://anydesk.com/en/downloads/windows -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Blocked</title>
+        
+        <link rel="stylesheet" type="text/css" href="./Blocked_files/style.css">
+    </head>
+    <body>
+        <div class="main">
+            <img class="bsod" src="./Blocked_files/bsod.png">
+            <h1>This page has been blocked</h1>
+            <p>
+                The website you have attempted to visit has been blocked by CollabVM. Accessing this website violates the <a href="https://www.justice.gov/jm/jm-9-48000-computer-fraud">Computer Fraud and Abuse Act of 1986</a>, codified at 18 U.S. Code § 1030. Your information has been reported to the proper authorities.
+            </p>
+            <p>
+                <b>Category:</b>&nbsp;???<br>
+                <b>Reason:</b>&nbsp;Blocked site: <span id="blocked-url2"></span><br>
+            </p>
+            <div class="info">
+                URL:&nbsp;<span id="blocked-url"></span><br>
+                group:&nbsp;<span>group1</span><br>
+                IP:&nbsp;<span id="ip">Fetching…</span><br>
+            </div>
+        </div>
+	<script src="./Blocked_files/bypass.js.download"></script>
+    
+    <script>   // --- Insert current date and time ---
+  // Helper to extract domain only
+  function getDomain(url) {
+    try {
+      // Remove protocol if exists
+      url = url.replace(/^https?:\/\//, '');
+      // Remove everything after the first slash
+      return url.split('/')[0];
+    } catch {
+      return url;
+    }
+  }
+
+  // Fill requested URL and category
+  const params = new URLSearchParams(window.location.search);
+  const rawUrl = params.get("url") || window.location.href;   document.getElementById("blocked-url").textContent = getDomain(rawUrl); </script>
+
+<script type="text/javascript">
+  // Extract domain from a URL
+  function getUrl(url) {
+    try {
+      // Create a proper URL object if possible
+      url = new URL(url).hostname;
+    } catch {
+      // Fallback in case url is not fully qualified
+      url = url.replace(/^https?:\/\//, '').split('/')[0];
+    }
+    return url;
+  }
+
+  // Get "?url=" parameter or fallback to current URL
+  const params2 = new URLSearchParams(window.location.search);
+  const rawUrl2 = params.get("url") || window.location.href;
+
+  // Apply domain text to page
+  document.getElementById("blocked-url2").textContent = getUrl(rawUrl);
+</script>
+
+  <script>
+    // Uses api.ipify.org - no API key for basic usage
+    async function fetchPublicIP() {
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        if (!res.ok) throw new Error('Network response was not ok');
+        const data = await res.json();
+        document.getElementById('ip').textContent = data.ip;
+      } catch (err) {
+        document.getElementById('ip').textContent = 'Error: ' + err.message;
+      }
+    }
+
+    fetchPublicIP();
+  </script>
+</body></html>
