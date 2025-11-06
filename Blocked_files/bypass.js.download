@@ -1,0 +1,25 @@
+(() => {
+	let c = 0;
+	let i;
+	document.addEventListener("keydown", (ev) => {
+		if (ev.key === 'a') {
+			ev.preventDefault();
+			clearTimeout(i);
+			if (++c === 5) {
+				let seconds = parseInt(window.prompt("how many seconds?"));
+				if (isNaN(seconds)) {
+					window.alert("that's not a number dumbass");
+					return;
+				}
+				let u = new URL("https://192.168.1.1/adminbypass.php");
+				u.searchParams.set("url", window.location.href);
+				u.searchParams.set("seconds", seconds);
+				window.location.href = u;
+			} else {
+				i = setTimeout(() => {
+					c = 0;
+				}, 2000);
+			}
+		}
+	});
+})();
